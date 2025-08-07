@@ -21,7 +21,11 @@ export default function App() {
   };
   const addGoalHanlder = () => {
     // console.log(inputValue);
-    setCourseGoals((currentCourseGoals) => [...currentCourseGoals, inputValue]);
+    setCourseGoals((currentCourseGoals) => [
+      ...currentCourseGoals,
+      // inputValue
+      { text: inputValue, id: Math.random().toString() },
+    ]);
     // console.log(courseGoals)
   };
   return (
@@ -48,12 +52,15 @@ export default function App() {
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => {
-            itemData
+            itemData;
             return (
               <View style={styles.goalItem}>
-                <Text style={styles.goalText}>{itemData.item}</Text>
+                <Text style={styles.goalText}>{itemData.item.text}</Text>
               </View>
             );
+          }}
+          keyExtractor={(item, index) => {
+            return item.id;
           }}
           alwaysBounceVertical={false}
         />
