@@ -12,6 +12,7 @@ function GoalInput({ onAddGoal }) {
   return (
     <View style={styles.inputContainer}>
       <TextInput
+        value={inputValue}
         style={styles.textInput}
         placeholder="Your Course Goal!"
         onChangeText={textInputHandler}
