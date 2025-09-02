@@ -17,14 +17,21 @@ import GoalInput from "./components/GoalInput";
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
   const addGoalHanlder = (inputValue) => {
-    setCourseGoals((currentCourseGoals) => [
-      ...currentCourseGoals,
-      { text: inputValue, id: Math.random().toString() },
-    ]);
+    setCourseGoals((currentCourseGoals) => {
+      return [
+        ...currentCourseGoals,
+        { text: inputValue, id: Math.random().toString() },
+      ];
+    });
+  };
+  const deleteGoalHandler = (id) => {
+    setCourseGoals((currentCourseGoals) => {
+      return currentCourseGoals.filter((goal) => goal.id !== id);
+    });
   };
   return (
     <View style={styles.appContainer}>
-    {/* components */}
+      {/* components */}
       <GoalInput onAddGoal={addGoalHanlder} />
       <View style={styles.courseGoals}>
         {/* ScrollView的情況，就不能用style，必須要用contentContainerStyle去套用CSS */}
@@ -46,7 +53,11 @@ export default function App() {
               // <View style={styles.goalItem}>
               //   <Text style={styles.goalText}>{itemData.item.text}</Text>
               // </View>
-              <GoalItem text={itemData.item.text} />
+              <GoalItem
+                text={itemData.item.text}
+                onDeleteGoal={deleteGoalHandler}
+                id={itemData.item.id}
+              />
             );
           }}
           keyExtractor={(item) => {
