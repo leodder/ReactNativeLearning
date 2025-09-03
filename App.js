@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  // Button,
+  Button,
   // TextInput,
   // ScrollView,
   FlatList,
@@ -15,8 +15,9 @@ import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 export default function App() {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
   const [courseGoals, setCourseGoals] = useState([]);
-  const addGoalHanlder = (inputValue) => {
+  const addGoalHandler = (inputValue) => {
     setCourseGoals((currentCourseGoals) => {
       return [
         ...currentCourseGoals,
@@ -24,15 +25,22 @@ export default function App() {
       ];
     });
   };
+  const endGoalHandler = () => {
+    setModalIsVisible(false)
+  }
   const deleteGoalHandler = (id) => {
     setCourseGoals((currentCourseGoals) => {
       return currentCourseGoals.filter((goal) => goal.id !== id);
     });
   };
+  const addModalHandler = () => {
+    setModalIsVisible(true);
+  }
   return (
     <View style={styles.appContainer}>
       {/* components */}
-      <GoalInput onAddGoal={addGoalHanlder} />
+      <Button title="Add New Goal" color="#5e0acc" onPress={addModalHandler} />
+      <GoalInput onAddGoal={addGoalHandler} modalVisible={modalIsVisible} endGoalHandler={endGoalHandler} />
       <View style={styles.courseGoals}>
         {/* ScrollView的情況，就不能用style，必須要用contentContainerStyle去套用CSS */}
         {/* <ScrollView contentContainerStyle={styles.courseGoals}> */}

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { View, Text, Pressable } from "react-native";
 function GoalItem({text, onDeleteGoal, id}) {
   return (
-    <Pressable onPress={() => onDeleteGoal(id)}>
+    <Pressable onPress={() => onDeleteGoal(id)} style={({pressed})=> pressed && styles.pressedItem}>
       <View style={styles.goalItem}>
         <Text style={styles.goalText}>{text}</Text>
       </View>
@@ -24,4 +24,7 @@ const styles = StyleSheet.create({
   goalText: {
     color: "white",
   },
+  pressedItem: {
+    opacity: 0.5
+  }
 });
