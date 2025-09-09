@@ -1,4 +1,11 @@
-import { StyleSheet, View, Button, TextInput, Modal } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Button,
+  TextInput,
+  Modal,
+  Image,
+} from "react-native";
 import { useState } from "react";
 function GoalInput({ onAddGoal, modalVisible, endGoalHandler }) {
   const [inputValue, setInputValue] = useState("");
@@ -13,6 +20,10 @@ function GoalInput({ onAddGoal, modalVisible, endGoalHandler }) {
   return (
     <Modal animationType="slide" visible={modalVisible}>
       <View style={styles.inputContainer}>
+        <Image
+          style={styles.reactTestImage}
+          source={require("../assets/images/reactNativeTest.png")}
+        />
         <TextInput
           value={inputValue}
           style={styles.textInput}
@@ -21,10 +32,10 @@ function GoalInput({ onAddGoal, modalVisible, endGoalHandler }) {
         />
         <View style={styles.buttonContainer}>
           <View style={styles.buttonView}>
-            <Button title="Add Goal" onPress={addGoalHanlder} />
+            <Button title="Add Goal" onPress={addGoalHanlder} color="#b180f0" />
           </View>
           <View style={styles.buttonView}>
-            <Button title="Cancel" onPress={endGoalHandler} />
+            <Button title="Cancel" onPress={endGoalHandler} color="#f31282" />
           </View>
         </View>
       </View>
@@ -37,27 +48,36 @@ const styles = StyleSheet.create({
     // flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
-    marginBottom: 12,
+    // borderBottomWidth: 1,
+    // borderBottomColor: "#cccccc",
+    // marginBottom: 12,
     // width: "100%",
     height: "100%",
-    padding: 16
+    padding: 16,
+    backgroundColor: "#311b6b",
+  },
+  reactTestImage: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
   textInput: {
     flexDirection: "row",
     borderWidth: 1,
-    borderColor: "#cccccc",
+    borderColor: "#e4d0ff",
+    backgroundColor: "#e4d0ff",
+    color: '#120438',
+    borderRadius: 6,
     width: "100%",
     // marginRight: 8,
-    padding: 8,
+    padding: 16,
   },
   buttonContainer: {
     flexDirection: "row",
-    marginTop: 8
+    marginTop: 8,
   },
   buttonView: {
-    width: '30%',
-    marginHorizontal: 8
-  }
+    width: "30%",
+    marginHorizontal: 8,
+  },
 });
